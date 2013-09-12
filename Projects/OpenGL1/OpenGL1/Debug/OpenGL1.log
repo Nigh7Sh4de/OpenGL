@@ -1,0 +1,17 @@
+﻿Build started 8/11/2013 1:52:09 PM.
+     1>Project "C:\Users\Dennis\Github\opengl-1\src\OpenGL1\OpenGL1\OpenGL1.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Dennis\Github\opengl-1\src\OpenGL1\Debug\OpenGL1.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Dennis\Github\opengl-1\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Dennis\Github\opengl-1\src\OpenGL1\Debug\OpenGL1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Dennis\Github\opengl-1\src\OpenGL1\Debug\OpenGL1.lib" /MACHINE:X86 Debug\Main.obj
+     1>Main.obj : error LNK2019: unresolved external symbol _glfwInit referenced in function _main
+     1>Main.obj : error LNK2019: unresolved external symbol _glfwTerminate referenced in function _main
+     1>Main.obj : error LNK2019: unresolved external symbol _glfwCreateWindow referenced in function _main
+     1>Main.obj : error LNK2019: unresolved external symbol _glfwWindowShouldClose referenced in function _main
+     1>Main.obj : error LNK2019: unresolved external symbol _glfwPollEvents referenced in function _main
+     1>Main.obj : error LNK2019: unresolved external symbol _glfwMakeContextCurrent referenced in function _main
+     1>Main.obj : error LNK2019: unresolved external symbol _glfwSwapBuffers referenced in function _main
+     1>C:\Users\Dennis\Github\opengl-1\src\OpenGL1\Debug\OpenGL1.exe : fatal error LNK1120: 7 unresolved externals
+     1>Done Building Project "C:\Users\Dennis\Github\opengl-1\src\OpenGL1\OpenGL1\OpenGL1.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.03
