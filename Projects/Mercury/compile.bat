@@ -1,15 +1,36 @@
-@echo on
+::Some house cleaning:
+@ECHO off
+set projectName=Mercury
+CD "C:\Users\Dennis\Github\OpenGL\Projects\%projectName%"
 
-cd "C:\Users\Dennis\Github\OpenGL\Projects\Mercury\src"
-dir
+::Try compiling
+g++ -c src\%projectName%.cpp -o obj\%projectName%.o
 
-g++ -c Mercury.cpp
+::Check if compiler failed
+IF %errorlevel%==0 (
 
-::Remember to change location of libs to Project folder for ease of use
-g++ -o ../Mercury.exe Mercury.o -lglfw3 -lglew32 -lgdi32 -lopengl32
+	::Try compiling
+	g++ -o bin\%projectName%.exe obj\%projectName%.o -Llib -lglfw3 -lglew32 -lgdi32 -lopengl32 && (
+		
+		::If linked successfully
+		ECHO Successfull! && ECHO Running: && ECHO.
+		bin\%projectName%.exe
 
+	) || (
+	
+		::If link failed
+		ECHO.
+		ECHO -----------------------
+		ECHO --Linker Done Goffed!--
+		ECHO -----------------------
+		PAUSE
+	)
+) ELSE (
 
-cd ..
-Mercury.exe
-
-::PAUSE
+	::If compiler failed
+	ECHO.
+	ECHO -------------------------
+	ECHO --Compiler Done Goofed!--
+	ECHO -------------------------
+	PAUSE
+)
