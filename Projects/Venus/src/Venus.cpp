@@ -16,7 +16,7 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	
-	GLFWwindow* window = glfwCreateWindow(800, 600, "My Super Awesome OpenGL window!", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(1920, 1080, "My Super Awesome OpenGL window!", glfwGetPrimaryMonitor(), nullptr);
 	glfwMakeContextCurrent(window);
 	
 	glewExperimental = GL_TRUE;
@@ -40,7 +40,7 @@ int main() {
 		"in vec3 Color;"
 		"out vec4 outColor;"
 		"void main() {"
-		" outColor = vec4(Color, 1.0);"
+		" outColor = vec4(1-Color, 1.0);"
 		"}";
 	
 	// Create Vertex Array Object
@@ -52,15 +52,27 @@ int main() {
     GLuint vbo;
     glGenBuffers(1, &vbo);
 	
+	//Create an Element Buffer Object
+	GLuint ebo;
+	glGenBuffers(1, &ebo);
+	
 	float vertices[] = {
 		 0.0f,  0.5f, 1.0f, 0.0f, 0.0f, // Vertex 1: Red
 		 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // Vertex 2: Green
 		-0.5f, -0.5f, 0.0f, 0.0f, 1.0f  // Vertex 3: Blue
 	};
+	
+	GLuint elements[] = {
+		0, 1, 2,
+		// 2, 3, 0
+	};
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+	
     // Create and compile the vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexSource, NULL);
@@ -89,7 +101,7 @@ int main() {
 	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(2*sizeof(float)));
 	
 	GLint uniColor = glGetUniformLocation(shaderProgram, "color");
-	
+
 	///////////////////////////////
 	
 	while (!glfwWindowShouldClose(window)) {
@@ -107,8 +119,11 @@ int main() {
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        // Draw a triangle from the 3 vertices
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        /* // Draw a triangle from the 3 vertices
+        glDrawArrays(GL_TRIANGLES, 0, 3); */
+		
+		//Draw Elements as per elements array
+		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 
 		
 		/*************************************************************/
