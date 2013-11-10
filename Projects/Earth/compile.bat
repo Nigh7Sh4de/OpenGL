@@ -15,7 +15,7 @@ REM xcopy lib\glew32.dll bin /Y
 IF %errorlevel%==0 (
 
 	::Try compiling
-	g++ -o bin\%projectName%.exe obj\%projectName%.o -Llib -lglfw3 -lglew32s -lgdi32 -lopengl32 && (
+	g++ -o bin\%projectName%.exe obj\%projectName%.o -Llib -lSOIL -lglfw3 -lglew32s -lgdi32 -lopengl32 && (
 		
 		::If linked successfully
 		ECHO Successfull! && ECHO Running: && ECHO.
