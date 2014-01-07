@@ -9,6 +9,12 @@ I will be using MinGW command line with Notepad++ because MSVS is BEYOND TERRIBL
 
 Projects
 --------
-At the moment there is only 1 project in this repo:
+At the moment there are several projects in this repo (all from tutorials):
 ####Mercury####
 Contains a blank window which is basically just a Proof of Concept for my build script and OpenGL & other libraries installation
+
+####Venus####
+Contains a spinning multicoloured  triangle which I made while learning about shaders
+
+####Earth####
+In progress....
