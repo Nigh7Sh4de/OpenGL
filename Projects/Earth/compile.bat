@@ -3,7 +3,7 @@
 
 set projectName=Earth
 
-CD "C:\Users\Dennis\Github\OpenGL\Projects\%projectName%"
+REM CD "C:\Users\Dennis\Github\OpenGL\Projects\%projectName%"
 
 ::Try compiling
 g++ -c src\%projectName%.cpp -o obj\%projectName%.o -std=gnu++0x
