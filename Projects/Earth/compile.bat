@@ -3,8 +3,6 @@
 
 set projectName=Earth
 
-REM CD "C:\Users\Dennis\Github\OpenGL\Projects\%projectName%"
-
 ::Try compiling
 g++ -c src\%projectName%.cpp -o obj\%projectName%.o -std=gnu++0x
 
@@ -14,8 +12,8 @@ REM xcopy lib\glew32.dll bin /Y
 ::Check if compiler failed
 IF %errorlevel%==0 (
 
-	::Try compiling
-	g++ -o bin\%projectName%.exe obj\%projectName%.o -Llib -lSOIL -lglfw3 -lglew32s -lgdi32 -lopengl32 && (
+	::Try linking
+	g++ -o bin\%projectName%.exe obj\%projectName%.o -Llib -lSOIL -lglfw3 -lglew32s -lgdi32 -lopengl32 -v && (
 		
 		::If linked successfully
 		ECHO Successfull! && ECHO Running: && ECHO.
