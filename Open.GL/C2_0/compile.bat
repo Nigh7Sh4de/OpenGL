@@ -10,7 +10,7 @@ g++ -c src\main.cpp -o obj\main.o -std=gnu++0x -Iinclude -g
 IF %errorlevel%==0 (
 
 	::Try linking
-	g++ -o bin\test1.exe obj\main.o -Llib -lglew32s -lsfml-window-s -lsfml-system-s && (
+	g++ -o bin\test1.exe obj\main.o -mwindows -Llib -lglew32s -lsfml-window-s -lsfml-system-s && (
 		
 		::If linked successfully
 		ECHO Successfull! && ECHO Running: && ECHO.
