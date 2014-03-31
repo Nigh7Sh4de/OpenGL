@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"col",
+				"colAttrib"
+			],
+			[
+				"shad",
+				"shaderProgram"
+			],
+			[
+				"tri",
+				"triangleColor"
+			],
+			[
 				"pr",
 				"println"
 			],
@@ -27,7 +39,7 @@
 			"file": "compile.bat",
 			"settings":
 			{
-				"buffer_size": 680,
+				"buffer_size": 723,
 				"line_ending": "Windows"
 			}
 		},
@@ -35,17 +47,29 @@
 			"file": "src/main.cpp",
 			"settings":
 			{
-				"buffer_size": 2810,
+				"buffer_size": 3644,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "test1.sublime-project",
+			"settings":
+			{
+				"buffer_size": 268,
+				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "Packages/User/Compile.bat.sublime-build",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 265.0,
 		"selected_items":
 		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -65,10 +89,6 @@
 			[
 				"gdb",
 				"Preferences: SublimeGDB Settings – Default"
-			],
-			[
-				"inst",
-				"Package Control: Install Package"
 			],
 			[
 				"insta",
@@ -157,6 +177,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			");\n",
+			"hellow",
 			"System.out.",
 			"4",
 			"System.out.println(",
@@ -303,15 +325,15 @@
 					"file": "compile.bat",
 					"settings":
 					{
-						"buffer_size": 680,
+						"buffer_size": 723,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								181,
-								181
+								280,
+								280
 							]
 						],
 						"settings":
@@ -330,15 +352,15 @@
 					"file": "src/main.cpp",
 					"settings":
 					{
-						"buffer_size": 2810,
+						"buffer_size": 3644,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								477,
-								477
+								48,
+								48
 							]
 						],
 						"settings":
@@ -346,6 +368,33 @@
 							"syntax": "Packages/C++/C++.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "test1.sublime-project",
+					"settings":
+					{
+						"buffer_size": 268,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								268,
+								268
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

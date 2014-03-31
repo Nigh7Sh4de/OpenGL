@@ -2,12 +2,12 @@
 	"folders":
 	[
 		{
-			"path": "/C/Users/Dennis/Desktop/test1"
+			"path": "/C/Users/Dennis/Github/OpenGL/Open.GL/C2_0"
 		}
 	],
 	"settings":
 	{
-		"sublimegdb_workingdir": "${folder:${project_path:bin/test1.exe}}",
-		"sublimegdb_commandline": "gdb -nx -readnow -fullname --interpreter=mi -args ./test1.exe"
+		"sublimegdb_commandline": "gdb -nx -readnow -fullname --interpreter=mi -args ./test1.exe",
+		"sublimegdb_workingdir": "${folder:${project_path:bin/test1.exe}}"
 	}
 }

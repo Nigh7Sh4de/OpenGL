@@ -4,7 +4,7 @@
 set projectName=test1
 
 ::Try compiling
-g++ -c src\main.cpp -o obj\main.o -std=gnu++0x -Iinclude -g
+g++ -c src\main.cpp -o obj\main.o -std=gnu++0x -Iinclude -g -static-libgcc -static-libstdc++
 
 ::Check if compiler failed
 IF %errorlevel%==0 (
