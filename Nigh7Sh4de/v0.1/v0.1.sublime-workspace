@@ -39,7 +39,7 @@
 			"file": "compile.bat",
 			"settings":
 			{
-				"buffer_size": 728,
+				"buffer_size": 736,
 				"line_ending": "Windows"
 			}
 		},
@@ -47,25 +47,8 @@
 			"file": "src/main.cpp",
 			"settings":
 			{
-				"buffer_size": 3644,
+				"buffer_size": 3167,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/Nigh7Sh4de/AppData/Roaming/Sublime Text 2/Packages/User/Compile.bat.sublime-build",
-			"settings":
-			{
-				"buffer_size": 73,
-				"line_ending": "Windows",
-				"name": "untitled.sublime-build"
-			}
-		},
-		{
-			"file": "test1.sublime-project",
-			"settings":
-			{
-				"buffer_size": 268,
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -121,6 +104,7 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Nigh7Sh4de/Github/OpenGL/Nigh7Sh4de/v0.1 - Copy/src/main.cpp",
 		"/E/bootmgr.efi",
 		"/C/Users/Dennis/Desktop/test1/test1.sublime-project",
 		"/C/Users/Dennis/AppData/Roaming/Sublime Text 2/Packages/SublimeGDB/SublimeGDB.sublime-settings",
@@ -327,7 +311,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -335,15 +319,15 @@
 					"file": "compile.bat",
 					"settings":
 					{
-						"buffer_size": 728,
+						"buffer_size": 736,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								235,
-								235
+								570,
+								570
 							]
 						],
 						"settings":
@@ -362,15 +346,15 @@
 					"file": "src/main.cpp",
 					"settings":
 					{
-						"buffer_size": 3644,
+						"buffer_size": 3167,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								68,
-								68
+								719,
+								719
 							]
 						],
 						"settings":
@@ -380,60 +364,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/C/Users/Nigh7Sh4de/AppData/Roaming/Sublime Text 2/Packages/User/Compile.bat.sublime-build",
-					"settings":
-					{
-						"buffer_size": 73,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								46,
-								46
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "test1.sublime-project",
-					"settings":
-					{
-						"buffer_size": 268,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								268,
-								268
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 373.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

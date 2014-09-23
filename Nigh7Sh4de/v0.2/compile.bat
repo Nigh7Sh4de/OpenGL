@@ -1,7 +1,7 @@
 ::Some house cleaning:
 @ECHO off
 
-set projectName=test1
+set projectName=Nigh7Sh4de_v0.2
 
 ::Try compiling
 g++ -c src\main.cpp -o obj\main.o -std=gnu++0x -Iinclude -g -static-libgcc -static-libstdc++
@@ -11,7 +11,7 @@ IF %errorlevel%==0 (
 
 	::Try linking
 	dir
-	g++ -o bin\test1.exe obj\main.o -mwindows -Llib -lglew32s -lsfml-window-s -lsfml-system-s && (
+	g++ -o bin\%projectName%.exe obj\main.o -mwindows -Llib -lSOIL -lglew32s -lsfml-window-s -lsfml-system-s && (
 		
 		::If linked successfully
 		ECHO Successfull! && ECHO Running: && ECHO.
