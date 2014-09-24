@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"Ve",
+				"VertexSource"
+			],
+			[
+				"frag",
+				"fragmentShader"
+			],
+			[
 				"Frag",
 				"fragmentSource"
 			],
@@ -51,18 +59,23 @@
 			"file": "compile.bat",
 			"settings":
 			{
-				"buffer_size": 1010,
+				"buffer_size": 1015,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "// #include \"../include/GL/glew.h\"\n#define GLEW_STATIC\n\n#include <GL/glew.h>\n#include <GL/glfw3.h>\n#include <GLSLTools.h>\n#include <fstream>\n#include <sstream>\n#include <iostream>\n\n// const GLchar* vertexSource =\n//     \"#version 150 core\\n\"\n//     \"in vec2 position;\"\n//     \"void main() {\"\n//     \" gl_Position = vec4(position, 0.0, 1.0);\"\n//     \"}\";\n\n// const GLchar* fragmentSource =\n//     \"#version 150 core\\n\"\n//     \"out vec4 outColor;\"\n//     \"void main() {\"\n//     \" outColor = vec4(1.0, 1.0, 1.0, 1.0);\"\n//     \"}\";\n\n\nint main(void)\n{\n    GLFWwindow* window;\n\n    /* Initialize the library */\n    if (!glfwInit())\n        return -1;\n\n    /* Create a windowed mode window and its OpenGL context */\n    window = glfwCreateWindow(800, 450, \"Mah Cube\", NULL, NULL);\n    if (!window)\n    {\n        glfwTerminate();\n        return -1;\n    }\n\n    /* Make the window's context current */\n    glfwMakeContextCurrent(window);\n\n    glewExperimental = GL_TRUE;\n    glewInit();\n    // Create Vertex Array Object\n    GLuint vao;\n    glGenVertexArrays(1, &vao);\n    glBindVertexArray(vao);\n    // Create a Vertex Buffer Object and copy the vertex data to it\n    GLuint vbo;\n    glGenBuffers(1, &vbo);\n    GLfloat vertices[] = {\n    0.0f, 0.5f,\n    0.5f, -0.5f,\n    -0.5f, -0.5f\n    };\n    glBindBuffer(GL_ARRAY_BUFFER, vbo);\n    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);\n    \n    std::ifstream v(\"VertexSource.glsl\");\n    std::stringstream vBuffer;\n    vBuffer << v.rdbuf();\n    const char* vertexSource = loadSource(\"VertexSource.glsl\");\n    std::cout<< \"Vertex: \" << vertexSource << std::endl;\n\n    std::ifstream f(\"FragmentSource.glsl\");\n    std::stringstream fBuffer;\n    fBuffer << f.rdbuf();\n    const char* fragmentSource = loadSource(\"FragmentSource.glsl\");\n    std::cout<< \"Fragment: \" << fragmentSource << std::endl;\n\n    // GLuint vertexShader = create_shader(\"VertexShader.glsl\", GL_VERTEX_SHADER);\n    // GLuint fragmentShader = create_shader(\"FragmentShader.glsl\", GL_FRAGMENT_SHADER);\n\n    // // Create and compile the vertex shader\n    // GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);\n    // glShaderSource(vertexShader, 1, &vertexSource, NULL);\n    // glCompileShader(vertexShader);\n    // // Create and compile the fragment shader\n    // GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);\n    // glShaderSource(fragmentShader, 1, &fragmentSource, NULL);\n    // glCompileShader(fragmentShader);\n    // Link the vertex and fragment shader into a shader program\n\n     // Create and compile the vertex shader\n    \n`   GLint status = GL_TRUE;\n    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);\n    \n    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);\n    glShaderSource(vertexShader, 1, &vertexSource, NULL);\n    glCompileShader(vertexShader);\n    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);\n\n    // Create and compile the fragment shader\n    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);\n    glShaderSource(fragmentShader, 1, &fragmentSource, NULL);\n    glCompileShader(fragmentShader);\n    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);\n\n    // Link the vertex and fragment shader into a shader program\n    GLuint shaderProgram = glCreateProgram();\n    glAttachShader(shaderProgram, vertexShader);\n    glAttachShader(shaderProgram, fragmentShader);\n    glBindFragDataLocation(shaderProgram, 0, \"outColor\");\n    glLinkProgram(shaderProgram);\n    glUseProgram(shaderProgram);\n\n    // Specify the layout of the vertex data\n    GLint posAttrib = glGetAttribLocation(shaderProgram, \"position\");\n    glEnableVertexAttribArray(posAttrib);\n    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);\n\n\n    /* Loop until the user closes the window */\n    while (!glfwWindowShouldClose(window))\n    {\n        /* Render here */\n        // Clear the screen to black\n        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);\n        glClear(GL_COLOR_BUFFER_BIT);\n        // Draw a triangle from the 3 vertices\n        glDrawArrays(GL_TRIANGLES, 0, 3);\n        // Swap buffers\n\n        /* Swap front and back buffers */\n        glfwSwapBuffers(window);\n\n        /* Poll for and process events */\n        glfwPollEvents();\n    }\n\n    glfwTerminate();\n    return 0;\n}",
 			"file": "src/Cube.cpp",
-			"file_size": 4170,
-			"file_write_time": 130554498002231751,
 			"settings":
 			{
-				"buffer_size": 4265,
+				"buffer_size": 3254,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/FragmentSource.glsl",
+			"settings":
+			{
+				"buffer_size": 95,
 				"line_ending": "Windows"
 			}
 		},
@@ -70,7 +83,7 @@
 			"file": "include/GLSLTools.cpp",
 			"settings":
 			{
-				"buffer_size": 4266,
+				"buffer_size": 4287,
 				"line_ending": "Windows",
 				"name": "/**"
 			}
@@ -90,78 +103,12 @@
 				"buffer_size": 93,
 				"line_ending": "Windows"
 			}
-		},
-		{
-			"contents": "322-gdb-show interpreter\n=thread-group-added,id=\"i1\"\n~\"GNU gdb (GDB) 7.6.1\\n\"\n~\"Copyright (C) 2013 Free Software Foundation, Inc.\\n\"\n~\"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\\nThis is free software: you are free to change and redistribute it.\\nThere is NO WARRANTY, to the extent permitted by law.  Type \\\"show copying\\\"\\nand \\\"show warranty\\\" for details.\\n\"\n~\"This GDB was configured as \\\"mingw32\\\".\\nFor bug reporting instructions, please see:\\n\"\n~\"<http://www.gnu.org/software/gdb/bugs/>...\\n\"\n~\"Reading symbols from C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\bin\\\\Cube.exe...\"\n~\"expanding to full symbols...\"\n~\"done.\\n\"\n(gdb)\n322^error,msg=\"Undefined show command: \\\"interpreter\\\".  Try \\\"help show\\\".\"\n(gdb)\n323-inferior-tty-set c:\\users\\nigh7s~1\\appdata\\local\\temp\\tmpdg5q6g\n323^done\n(gdb)\n324-gdb-set target-async 1\n325-gdb-set pagination off\n326-gdb-set disassembly-flavor intel\n327-break-insert \"\\\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp\\\":62\"\n324^done\n(gdb)\n325^done\n(gdb)\n326^done\n(gdb)\n327^done,bkpt={number=\"1\",type=\"breakpoint\",disp=\"keep\",enabled=\"y\",addr=\"0x004017f3\",func=\"main()\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"62\",thread-groups=[\"i1\"],times=\"0\",original-location=\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp:62\"}\n(gdb)\n328-break-insert \"\\\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp\\\":89\"\n328^done,bkpt={number=\"2\",type=\"breakpoint\",disp=\"keep\",enabled=\"y\",addr=\"0x0040196f\",func=\"main()\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"89\",thread-groups=[\"i1\"],times=\"0\",original-location=\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp:89\"}\n(gdb)\n329-break-insert \"\\\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp\\\":98\"\n329^done,bkpt={number=\"3\",type=\"breakpoint\",disp=\"keep\",enabled=\"y\",addr=\"0x00401a17\",func=\"main()\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"98\",thread-groups=[\"i1\"],times=\"0\",original-location=\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp:98\"}\n(gdb)\n330-break-insert \"\\\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp\\\":104\"\n330^done,bkpt={number=\"4\",type=\"breakpoint\",disp=\"keep\",enabled=\"y\",addr=\"0x00401a72\",func=\"main()\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"104\",thread-groups=[\"i1\"],times=\"0\",original-location=\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp:104\"}\n(gdb)\n331-exec-run\n&\"warning: Warning: Failed to open TTY c:\\\\users\\\\nigh7s~1\\\\appdata\\\\local\\\\temp\\\\tmpdg5q6g, error 0x20.\\n\"\n=thread-group-started,id=\"i1\",pid=\"2948\"\n=thread-created,id=\"1\",group-id=\"i1\"\n~\"[New Thread 2948.0xa98]\\n\"\n331^running\n*running,thread-id=\"all\"\n(gdb)\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\kernel32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\kernel32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\kernel32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\KernelBase.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\KernelBase.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\KernelBase.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\gdi32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\gdi32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\gdi32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\msvcrt.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\msvcrt.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\msvcrt.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\opengl32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\opengl32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\opengl32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\user32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\user32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\user32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\MinGW\\\\bin\\\\libgcc_s_dw2-1.dll\",target-name=\"C:\\\\MinGW\\\\bin\\\\libgcc_s_dw2-1.dll\",host-name=\"C:\\\\MinGW\\\\bin\\\\libgcc_s_dw2-1.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\MinGW\\\\bin\\\\libstdc++-6.dll\",target-name=\"C:\\\\MinGW\\\\bin\\\\libstdc++-6.dll\",host-name=\"C:\\\\MinGW\\\\bin\\\\libstdc++-6.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\advapi32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\advapi32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\advapi32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\glu32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\glu32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\glu32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\ddraw.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\ddraw.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\ddraw.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\sechost.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\sechost.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\sechost.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\rpcrt4.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\rpcrt4.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\rpcrt4.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\dciman32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\dciman32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\dciman32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\sspicli.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\sspicli.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\sspicli.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\cryptbase.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\cryptbase.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\cryptbase.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\bcryptprimitives.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\bcryptprimitives.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\bcryptprimitives.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\imm32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\imm32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\imm32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\msctf.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\msctf.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\msctf.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\uxtheme.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\uxtheme.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\uxtheme.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\combase.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\combase.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\combase.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\winmm.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\winmm.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\winmm.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\winmmbase.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\winmmbase.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\winmmbase.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\cfgmgr32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\cfgmgr32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\cfgmgr32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\devobj.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\devobj.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\devobj.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\dwmapi.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\dwmapi.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\dwmapi.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Program Files (x86)\\\\Common Files\\\\microsoft shared\\\\ink\\\\tiptsf.dll\",target-name=\"C:\\\\Program Files (x86)\\\\Common Files\\\\microsoft shared\\\\ink\\\\tiptsf.dll\",host-name=\"C:\\\\Program Files (x86)\\\\Common Files\\\\microsoft shared\\\\ink\\\\tiptsf.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\oleaut32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\oleaut32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\oleaut32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\ig75icd32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\ig75icd32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\ig75icd32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\igdusc32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\igdusc32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\igdusc32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\version.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\version.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\version.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-unloaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\version.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\version.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\version.dll\",thread-group=\"i1\"\n=thread-created,id=\"2\",group-id=\"i1\"\n~\"[New Thread 2948.0x20ac]\\n\"\n*running,thread-id=\"all\"\n=thread-created,id=\"3\",group-id=\"i1\"\n~\"[New Thread 2948.0x378]\\n\"\n*running,thread-id=\"all\"\n=thread-created,id=\"4\",group-id=\"i1\"\n~\"[New Thread 2948.0x10bc]\\n\"\n*running,thread-id=\"all\"\n=thread-created,id=\"5\",group-id=\"i1\"\n~\"[New Thread 2948.0x2154]\\n\"\n*running,thread-id=\"all\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\powrprof.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\powrprof.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\powrprof.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\ole32.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\ole32.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\ole32.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\kernel.appcore.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\kernel.appcore.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\kernel.appcore.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\oleacc.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\oleacc.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\oleacc.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n=breakpoint-modified,bkpt={number=\"1\",type=\"breakpoint\",disp=\"keep\",enabled=\"y\",addr=\"0x004017f3\",func=\"main()\",file=\"src\\\\\\\\Cube.cpp\",fullname=\"C:\\\\\\\\Users\\\\\\\\Nigh7Sh4de\\\\\\\\Programming\\\\\\\\Github\\\\\\\\OpenGL\\\\\\\\Projects\\\\\\\\Cube\\\\\\\\src\\\\\\\\Cube.cpp\",line=\"62\",thread-groups=[\"i1\"],times=\"1\",original-location=\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp:62\"}\n*stopped,reason=\"breakpoint-hit\",disp=\"keep\",bkptno=\"1\",frame={addr=\"0x004017f3\",func=\"main\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"62\"},thread-id=\"1\",stopped-threads=\"all\"\n332-thread-select 1\n(gdb)\n333-stack-info-frame\n332^done,new-thread-id=\"1\",frame={level=\"0\",addr=\"0x004017f3\",func=\"main\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"62\"}\n(gdb)\n333^done,frame={level=\"0\",addr=\"0x004017f3\",func=\"main\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"62\"}\n(gdb)\n334-stack-list-frames\n334^done,stack=[frame={level=\"0\",addr=\"0x004017f3\",func=\"main\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"62\"}]\n(gdb)\n335-stack-list-arguments 1\n335^done,stack-args=[frame={level=\"0\",args=[]}]\n(gdb)\n336-thread-info\n336^done,threads=[{id=\"5\",target-id=\"Thread 2948.0x2154\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"4\",target-id=\"Thread 2948.0x10bc\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"3\",target-id=\"Thread 2948.0x378\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"2\",target-id=\"Thread 2948.0x20ac\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"1\",target-id=\"Thread 2948.0xa98\",frame={level=\"0\",addr=\"0x004017f3\",func=\"main\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"62\"},state=\"stopped\"}],current-thread-id=\"1\"\n(gdb)\n337-thread-list-ids\n337^done,thread-ids={thread-id=\"5\",thread-id=\"4\",thread-id=\"3\",thread-id=\"2\",thread-id=\"1\"},current-thread-id=\"1\",number-of-threads=\"5\"\n(gdb)\n338-stack-list-arguments 0 0 0\n338^done,stack-args=[frame={level=\"0\",args=[]}]\n(gdb)\n339-stack-list-locals 0\n339^done,locals=[name=\"window\",name=\"vbo\",name=\"fragmentSource\",name=\"vertexSource\",name=\"fragmentShader\",name=\"shaderProgram\",name=\"vao\",name=\"vertices\",name=\"v\",name=\"vBuffer\",name=\"f\",name=\"fBuffer\",name=\"vertexShader\",name=\"posAttrib\"]\n(gdb)\n340-var-create - * window\n340^done,name=\"var1\",numchild=\"0\",value=\"0x522a58\",type=\"GLFWwindow *\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n341-var-create - * vbo\n341^done,name=\"var2\",numchild=\"0\",value=\"1\",type=\"GLuint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n342-var-create - * fragmentSource\n342^done,name=\"var3\",numchild=\"1\",value=\"0x28fe78 \\\"P.B\\\"\",type=\"const char *\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n343-var-create - * vertexSource\n343^done,name=\"var4\",numchild=\"1\",value=\"0x543496 \\\"\\253\\253\\253\\253\\253\\253\\253\\253\\356\\376\\\"\",type=\"const char *\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n344-var-create - * fragmentShader\n344^done,name=\"var5\",numchild=\"0\",value=\"4337232\",type=\"GLuint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n345-var-create - * shaderProgram\n345^done,name=\"var6\",numchild=\"0\",value=\"1977248414\",type=\"GLuint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n346-var-create - * vao\n346^done,name=\"var7\",numchild=\"0\",value=\"1\",type=\"GLuint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n347-var-create - * vertices\n347^done,name=\"var8\",numchild=\"6\",value=\"[6]\",type=\"GLfloat [6]\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n348-var-create - * v\n348^done,name=\"var9\",numchild=\"0\",value=\"{...}\",type=\"std::ifstream\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n349-var-create - * vBuffer\n349^done,name=\"var10\",numchild=\"0\",value=\"{...}\",type=\"std::stringstream\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n350-var-create - * f\n350^done,name=\"var11\",numchild=\"0\",value=\"{...}\",type=\"std::ifstream\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n351-var-create - * fBuffer\n351^done,name=\"var12\",numchild=\"0\",value=\"{...}\",type=\"std::stringstream\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n352-var-create - * vertexShader\n352^done,name=\"var13\",numchild=\"0\",value=\"2686828\",type=\"GLuint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n353-var-create - * posAttrib\n353^done,name=\"var14\",numchild=\"0\",value=\"1977243754\",type=\"GLint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n354-exec-continue\n354^running\n*running,thread-id=\"1\"\n(gdb)\n*running,thread-id=\"all\"\nFile Opened successfully!!!. Reading data from file into array\nDisplaying Array...\n\n#version 150 core\nin vec2 position;\n\nvoid main() {\ngl_Position = vec4(position, 0.0, 1.0);\n}Vertex: #version 150 core\nin vec2 position;\n\nvoid main() {\ngl_Position = vec4(position, 0.0, 1.0);\n}\nFile Opened successfully!!!. Reading data from file into array\nDisplaying Array...\n\n#version 150 core\\n\nout vec4 outColor;\n\nvoid main() {\noutColor = vec4(1.0, 1.0, 1.0, 1.0);\n}Fragment: #version 150 core\\n\nout vec4 outColor;\n\nvoid main() {\noutColor = vec4(1.0, 1.0, 1.0, 1.0);\n}\n=breakpoint-modified,bkpt={number=\"2\",type=\"breakpoint\",disp=\"keep\",enabled=\"y\",addr=\"0x0040196f\",func=\"main()\",file=\"src\\\\\\\\Cube.cpp\",fullname=\"C:\\\\\\\\Users\\\\\\\\Nigh7Sh4de\\\\\\\\Programming\\\\\\\\Github\\\\\\\\OpenGL\\\\\\\\Projects\\\\\\\\Cube\\\\\\\\src\\\\\\\\Cube.cpp\",line=\"89\",thread-groups=[\"i1\"],times=\"1\",original-location=\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp:89\"}\n*stopped,reason=\"breakpoint-hit\",disp=\"keep\",bkptno=\"2\",frame={addr=\"0x0040196f\",func=\"_fu1___ZSt4cout\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"89\"},thread-id=\"1\",stopped-threads=\"all\"\n355-thread-select 1\n356-stack-info-frame\n(gdb)\n355^done,new-thread-id=\"1\",frame={level=\"0\",addr=\"0x0040196f\",func=\"_fu1___ZSt4cout\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"89\"}\n(gdb)\n356^done,frame={level=\"0\",addr=\"0x0040196f\",func=\"_fu1___ZSt4cout\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"89\"}\n(gdb)\n357-stack-list-frames\n357^done,stack=[frame={level=\"0\",addr=\"0x0040196f\",func=\"_fu1___ZSt4cout\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"89\"}]\n(gdb)\n358-stack-list-arguments 1\n358^done,stack-args=[frame={level=\"0\",args=[]}]\n(gdb)\n359-thread-info\n359^done,threads=[{id=\"5\",target-id=\"Thread 2948.0x2154\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"4\",target-id=\"Thread 2948.0x10bc\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"3\",target-id=\"Thread 2948.0x378\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"2\",target-id=\"Thread 2948.0x20ac\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"1\",target-id=\"Thread 2948.0xa98\",frame={level=\"0\",addr=\"0x0040196f\",func=\"_fu1___ZSt4cout\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"89\"},state=\"stopped\"}],current-thread-id=\"1\"\n(gdb)\n360-thread-list-ids\n360^done,thread-ids={thread-id=\"5\",thread-id=\"4\",thread-id=\"3\",thread-id=\"2\",thread-id=\"1\"},current-thread-id=\"1\",number-of-threads=\"5\"\n(gdb)\n361-var-delete var1\n362-var-delete var2\n363-var-delete var3\n364-var-delete var4\n365-var-delete var5\n366-var-delete var6\n367-var-delete var7\n368-var-delete var8\n369-var-delete var9\n370-var-delete var10\n371-var-delete var11\n361^done,ndeleted=\"1\"\n372-var-delete var12\n(gdb)\n373-var-delete var13\n362^done,ndeleted=\"1\"\n374-var-delete var14\n(gdb)\n375-stack-list-arguments 0 0 0\n363^done,ndeleted=\"1\"\n(gdb)\n364^done,ndeleted=\"1\"\n(gdb)\n365^done,ndeleted=\"1\"\n(gdb)\n366^done,ndeleted=\"1\"\n(gdb)\n367^done,ndeleted=\"1\"\n(gdb)\n368^done,ndeleted=\"1\"\n(gdb)\n369^done,ndeleted=\"1\"\n(gdb)\n370^done,ndeleted=\"1\"\n(gdb)\n371^done,ndeleted=\"1\"\n(gdb)\n372^done,ndeleted=\"1\"\n(gdb)\n373^done,ndeleted=\"1\"\n(gdb)\n374^done,ndeleted=\"1\"\n(gdb)\n375^done,stack-args=[frame={level=\"0\",args=[]}]\n(gdb)\n376-stack-list-locals 0\n376^done,locals=[name=\"window\",name=\"vbo\",name=\"fragmentSource\",name=\"vertexSource\",name=\"fragmentShader\",name=\"shaderProgram\",name=\"vao\",name=\"vertices\",name=\"v\",name=\"vBuffer\",name=\"f\",name=\"fBuffer\",name=\"vertexShader\",name=\"posAttrib\"]\n(gdb)\n377-var-create - * window\n377^done,name=\"var15\",numchild=\"0\",value=\"0x522a58\",type=\"GLFWwindow *\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n378-var-create - * vbo\n378^done,name=\"var16\",numchild=\"0\",value=\"1\",type=\"GLuint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n379-var-create - * fragmentSource\n379^done,name=\"var17\",numchild=\"1\",value=\"0x5263c0 \\\"#version 150 core\\\\\\\\n\\\\nout vec4 outColor;\\\\n\\\\nvoid main() {\\\\n     outColor = vec4(1.0, 1.0, 1.0, 1.0);\\\\n}\\\"\",type=\"const char *\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n380-var-create - * vertexSource\n380^done,name=\"var18\",numchild=\"1\",value=\"0x523f50 \\\"#version 150 core\\\\nin vec2 position;\\\\n\\\\nvoid main() {\\\\n\\tgl_Position = vec4(position, 0.0, 1.0);\\\\n}\\\"\",type=\"const char *\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n381-var-create - * fragmentShader\n381^done,name=\"var19\",numchild=\"0\",value=\"4337232\",type=\"GLuint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n382-var-create - * shaderProgram\n382^done,name=\"var20\",numchild=\"0\",value=\"1977248414\",type=\"GLuint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n383-var-create - * vao\n383^done,name=\"var21\",numchild=\"0\",value=\"1\",type=\"GLuint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n384-var-create - * vertices\n384^done,name=\"var22\",numchild=\"6\",value=\"[6]\",type=\"GLfloat [6]\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n385-var-create - * v\n385^done,name=\"var23\",numchild=\"0\",value=\"{...}\",type=\"std::ifstream\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n386-var-create - * vBuffer\n386^done,name=\"var24\",numchild=\"0\",value=\"{...}\",type=\"std::stringstream\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n387-var-create - * f\n387^done,name=\"var25\",numchild=\"0\",value=\"{...}\",type=\"std::ifstream\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n388-var-create - * fBuffer\n388^done,name=\"var26\",numchild=\"0\",value=\"{...}\",type=\"std::stringstream\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n389-var-create - * vertexShader\n389^done,name=\"var27\",numchild=\"0\",value=\"1\",type=\"GLuint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n390-var-create - * posAttrib\n390^done,name=\"var28\",numchild=\"0\",value=\"1977243754\",type=\"GLint\",thread-id=\"1\",has_more=\"0\"\n(gdb)\n391-exec-continue\n391^running\n*running,thread-id=\"1\"\n(gdb)\n*running,thread-id=\"all\"\n=breakpoint-modified,bkpt={number=\"3\",type=\"breakpoint\",disp=\"keep\",enabled=\"y\",addr=\"0x00401a17\",func=\"main()\",file=\"src\\\\\\\\Cube.cpp\",fullname=\"C:\\\\\\\\Users\\\\\\\\Nigh7Sh4de\\\\\\\\Programming\\\\\\\\Github\\\\\\\\OpenGL\\\\\\\\Projects\\\\\\\\Cube\\\\\\\\src\\\\\\\\Cube.cpp\",line=\"98\",thread-groups=[\"i1\"],times=\"1\",original-location=\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp:98\"}\n*stopped,reason=\"breakpoint-hit\",disp=\"keep\",bkptno=\"3\",frame={addr=\"0x00401a17\",func=\"_fu1___ZSt4cout\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"98\"},thread-id=\"1\",stopped-threads=\"all\"\n392-thread-select 1\n(gdb)\n393-stack-info-frame\n392^done,new-thread-id=\"1\",frame={level=\"0\",addr=\"0x00401a17\",func=\"_fu1___ZSt4cout\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"98\"}\n(gdb)\n393^done,frame={level=\"0\",addr=\"0x00401a17\",func=\"_fu1___ZSt4cout\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"98\"}\n(gdb)\n394-stack-list-frames\n394^done,stack=[frame={level=\"0\",addr=\"0x00401a17\",func=\"_fu1___ZSt4cout\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"98\"}]\n(gdb)\n395-stack-list-arguments 1\n395^done,stack-args=[frame={level=\"0\",args=[]}]\n(gdb)\n396-thread-info\n396^done,threads=[{id=\"5\",target-id=\"Thread 2948.0x2154\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"4\",target-id=\"Thread 2948.0x10bc\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"3\",target-id=\"Thread 2948.0x378\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"2\",target-id=\"Thread 2948.0x20ac\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"1\",target-id=\"Thread 2948.0xa98\",frame={level=\"0\",addr=\"0x00401a17\",func=\"_fu1___ZSt4cout\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"98\"},state=\"stopped\"}],current-thread-id=\"1\"\n(gdb)\n397-thread-list-ids\n397^done,thread-ids={thread-id=\"5\",thread-id=\"4\",thread-id=\"3\",thread-id=\"2\",thread-id=\"1\"},current-thread-id=\"1\",number-of-threads=\"5\"\n(gdb)\n398-var-update --all-values *\n398^done,changelist=[{name=\"var20\",value=\"3\",in_scope=\"true\",type_changed=\"false\",has_more=\"0\"},{name=\"var19\",value=\"2\",in_scope=\"true\",type_changed=\"false\",has_more=\"0\"}]\n(gdb)\n399-stack-list-locals 0\n399^done,locals=[name=\"window\",name=\"vbo\",name=\"fragmentSource\",name=\"vertexSource\",name=\"fragmentShader\",name=\"shaderProgram\",name=\"vao\",name=\"vertices\",name=\"v\",name=\"vBuffer\",name=\"f\",name=\"fBuffer\",name=\"vertexShader\",name=\"posAttrib\"]\n(gdb)\n400-exec-continue\n400^running\n*running,thread-id=\"1\"\n(gdb)\n*running,thread-id=\"all\"\n=breakpoint-modified,bkpt={number=\"4\",type=\"breakpoint\",disp=\"keep\",enabled=\"y\",addr=\"0x00401a72\",func=\"main()\",file=\"src\\\\\\\\Cube.cpp\",fullname=\"C:\\\\\\\\Users\\\\\\\\Nigh7Sh4de\\\\\\\\Programming\\\\\\\\Github\\\\\\\\OpenGL\\\\\\\\Projects\\\\\\\\Cube\\\\\\\\src\\\\\\\\Cube.cpp\",line=\"104\",thread-groups=[\"i1\"],times=\"1\",original-location=\"c:/users/nigh7sh4de/programming/github/opengl/projects/cube/src/cube.cpp:104\"}\n*stopped,reason=\"breakpoint-hit\",disp=\"keep\",bkptno=\"4\",frame={addr=\"0x00401a72\",func=\"_fu1___ZSt4cout\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"104\"},thread-id=\"1\",stopped-threads=\"all\"\n401-thread-select 1\n(gdb)\n402-stack-info-frame\n401^done,new-thread-id=\"1\",frame={level=\"0\",addr=\"0x00401a72\",func=\"_fu1___ZSt4cout\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"104\"}\n(gdb)\n402^done,frame={level=\"0\",addr=\"0x00401a72\",func=\"_fu1___ZSt4cout\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"104\"}\n(gdb)\n403-stack-list-frames\n403^done,stack=[frame={level=\"0\",addr=\"0x00401a72\",func=\"_fu1___ZSt4cout\",file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"104\"}]\n(gdb)\n404-stack-list-arguments 1\n404^done,stack-args=[frame={level=\"0\",args=[]}]\n(gdb)\n405-thread-info\n405^done,threads=[{id=\"5\",target-id=\"Thread 2948.0x2154\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"4\",target-id=\"Thread 2948.0x10bc\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"3\",target-id=\"Thread 2948.0x378\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"2\",target-id=\"Thread 2948.0x20ac\",frame={level=\"0\",addr=\"0x7787e82c\",func=\"??\",args=[]},state=\"stopped\"},{id=\"1\",target-id=\"Thread 2948.0xa98\",frame={level=\"0\",addr=\"0x00401a72\",func=\"_fu1___ZSt4cout\",args=[],file=\"src\\\\Cube.cpp\",fullname=\"C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\src\\\\Cube.cpp\",line=\"104\"},state=\"stopped\"}],current-thread-id=\"1\"\n(gdb)\n406-thread-list-ids\n406^done,thread-ids={thread-id=\"5\",thread-id=\"4\",thread-id=\"3\",thread-id=\"2\",thread-id=\"1\"},current-thread-id=\"1\",number-of-threads=\"5\"\n(gdb)\n407-var-update --all-values *\n407^done,changelist=[]\n(gdb)\n408-stack-list-locals 0\n408^done,locals=[name=\"window\",name=\"vbo\",name=\"fragmentSource\",name=\"vertexSource\",name=\"fragmentShader\",name=\"shaderProgram\",name=\"vao\",name=\"vertices\",name=\"v\",name=\"vBuffer\",name=\"f\",name=\"fBuffer\",name=\"vertexShader\",name=\"posAttrib\"]\n(gdb)\n409-exec-continue\n409^running\n*running,thread-id=\"1\"\n(gdb)\n*running,thread-id=\"all\"\n=library-loaded,id=\"C:\\\\Windows\\\\SysWOW64\\\\clbcatq.dll\",target-name=\"C:\\\\Windows\\\\SysWOW64\\\\clbcatq.dll\",host-name=\"C:\\\\Windows\\\\SysWOW64\\\\clbcatq.dll\",symbols-loaded=\"0\",thread-group=\"i1\"\n410-exec-interrupt --all\n411-exec-interrupt --all\n412-exec-interrupt --all\n",
-			"settings":
-			{
-				"buffer_size": 26950,
-				"line_ending": "Windows",
-				"name": "GDB Session",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "GNU gdb (GDB) 7.6.1\nCopyright (C) 2013 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.  Type \"show copying\"\nand \"show warranty\" for details.\nThis GDB was configured as \"mingw32\".\nFor bug reporting instructions, please see:\n<http://www.gnu.org/software/gdb/bugs/>...\nReading symbols from C:\\\\Users\\\\Nigh7Sh4de\\\\Programming\\\\Github\\\\OpenGL\\\\Projects\\\\Cube\\\\bin\\\\Cube.exe...expanding to full symbols...done.\n[New Thread 2948.0xa98]\n[New Thread 2948.0x20ac]\n[New Thread 2948.0x378]\n[New Thread 2948.0x10bc]\n[New Thread 2948.0x2154]\n",
-			"settings":
-			{
-				"buffer_size": 710,
-				"line_ending": "Windows",
-				"name": "GDB Console",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": " GLFWwindow * window = 0x522a58\n GLuint vbo = 1\n+const char * fragmentSource = 0x5263c0 \"#version 150 core\\\\n\\nout vec4 outColor;\\n\\nvoid main() {\\n     outColor = vec4(1.0, 1.0, 1.0, 1.0);\\n}\"\n+const char * vertexSource = 0x523f50 \"#version 150 core\\nin vec2 position;\\n\\nvoid main() {\\n	gl_Position = vec4(position, 0.0, 1.0);\\n}\"\n GLuint fragmentShader = 2\n GLuint shaderProgram = 3\n GLuint vao = 1\n+GLfloat [6] vertices = [6]\n std::ifstream v = {...}\n std::stringstream vBuffer = {...}\n std::ifstream f = {...}\n std::stringstream fBuffer = {...}\n GLuint vertexShader = 1\n GLint posAttrib = 1977243754\n",
-			"settings":
-			{
-				"buffer_size": 605,
-				"line_ending": "Windows",
-				"name": "GDB Variables",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "_fu1___ZSt4cout();\n",
-			"settings":
-			{
-				"buffer_size": 19,
-				"line_ending": "Windows",
-				"name": "GDB Callstack",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "001 -    stopped - _fu1___ZSt4cout();\n002 -    stopped - ??();\n003 -    stopped - ??();\n004 -    stopped - ??();\n005 -    stopped - ??();\n",
-			"settings":
-			{
-				"buffer_size": 138,
-				"line_ending": "Windows",
-				"name": "GDB Threads",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "1 - c:\\users\\nigh7sh4de\\programming\\github\\opengl\\projects\\cube\\src\\cube.cpp:62\n2 - c:\\users\\nigh7sh4de\\programming\\github\\opengl\\projects\\cube\\src\\cube.cpp:89\n3 - c:\\users\\nigh7sh4de\\programming\\github\\opengl\\projects\\cube\\src\\cube.cpp:98\n4 - c:\\users\\nigh7sh4de\\programming\\github\\opengl\\projects\\cube\\src\\cube.cpp:104\n",
-			"settings":
-			{
-				"buffer_size": 321,
-				"line_ending": "Windows",
-				"name": "GDB Breakpoints",
-				"read_only": true,
-				"scratch": true
-			}
 		}
 	],
 	"build_system": "Packages/User/Compile.bat.sublime-build",
 	"command_palette":
 	{
-		"height": 265.0,
+		"height": 58.0,
 		"selected_items":
 		[
 			[
@@ -238,10 +185,10 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/src/FragmentSource.glsl",
 		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/include/GLSLTools.h",
 		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/cube.sublime-project",
 		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/src/VertexSource.glsl",
-		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/src/FragmentSource.glsl",
 		"/C/Users/Nigh7Sh4de/Programming/OpenGL/Test003/test003.sublime-project",
 		"/C/Users/Nigh7Sh4de/Programming/OpenGL/Test002/test002.sublime-project",
 		"/C/Users/Nigh7Sh4de/Programming/OpenGL/Test003/test003.sublime-workspace",
@@ -467,15 +414,15 @@
 					"file": "compile.bat",
 					"settings":
 					{
-						"buffer_size": 1010,
+						"buffer_size": 1015,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								259,
-								259
+								698,
+								698
 							]
 						],
 						"settings":
@@ -484,7 +431,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 75.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -494,15 +441,15 @@
 					"file": "src/Cube.cpp",
 					"settings":
 					{
-						"buffer_size": 4265,
+						"buffer_size": 3254,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2665,
-								2665
+								1470,
+								1470
 							]
 						],
 						"settings":
@@ -512,25 +459,51 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1441.0,
+						"translation.y": 197.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "include/GLSLTools.cpp",
+					"file": "src/FragmentSource.glsl",
 					"settings":
 					{
-						"buffer_size": 4266,
+						"buffer_size": 95,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								993,
-								993
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "include/GLSLTools.cpp",
+					"settings":
+					{
+						"buffer_size": 4287,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1270,
+								1270
 							]
 						],
 						"settings":
@@ -547,7 +520,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "include/GLSLTools.h",
 					"settings":
 					{
@@ -573,7 +546,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "bin/VertexSource.glsl",
 					"settings":
 					{
@@ -584,182 +557,13 @@
 						"selection":
 						[
 							[
-								36,
-								36
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 2,
-			"sheets":
-			[
-				{
-					"buffer": 5,
-					"settings":
-					{
-						"buffer_size": 26950,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								26950,
-								26950
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/SublimeGDB/gdb_session.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"settings":
-					{
-						"buffer_size": 710,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								710,
-								710
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 12510.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"settings":
-					{
-						"buffer_size": 605,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								605,
-								605
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 8,
-					"settings":
-					{
-						"buffer_size": 19,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								19,
-								19
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
-				{
-					"buffer": 9,
-					"settings":
-					{
-						"buffer_size": 138,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								138,
-								138
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"settings":
-					{
-						"buffer_size": 321,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								321,
-								321
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"word_wrap": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -785,39 +589,18 @@
 			[
 				0,
 				0,
-				3,
+				1,
 				1
-			],
-			[
-				0,
-				1,
-				1,
-				2
-			],
-			[
-				1,
-				1,
-				2,
-				2
-			],
-			[
-				2,
-				1,
-				3,
-				2
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.33,
-			0.66,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.75,
 			1.0
 		]
 	},

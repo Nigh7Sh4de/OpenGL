@@ -1,7 +1,7 @@
 ::Some house cleaning:
 @ECHO off
 
-set projectName=Cube
+set projectName=Base
 
 ::Try compiling
 IF %errorlevel%==0 g++ -c src\%projectName%.cpp -o obj\%projectName%.o -std=gnu++0x -Iinclude -g

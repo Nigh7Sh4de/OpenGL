@@ -1,0 +1,13 @@
+{
+	"folders":
+	[
+		{
+			"path": "/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Base"
+		}
+	],
+	"settings":
+	{
+		"sublimegdb_commandline": "gdb -nx -readnow -fullname --interpreter=mi -args ./Base.exe",
+		"sublimegdb_workingdir": "${folder:${project_path:bin/Base.exe}}"
+	}
+}

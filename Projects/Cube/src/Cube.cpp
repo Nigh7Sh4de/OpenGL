@@ -8,20 +8,6 @@
 #include <sstream>
 #include <iostream>
 
-// const GLchar* vertexSource =
-//     "#version 150 core\n"
-//     "in vec2 position;"
-//     "void main() {"
-//     " gl_Position = vec4(position, 0.0, 1.0);"
-//     "}";
-
-// const GLchar* fragmentSource =
-//     "#version 150 core\n"
-//     "out vec4 outColor;"
-//     "void main() {"
-//     " outColor = vec4(1.0, 1.0, 1.0, 1.0);"
-//     "}";
-
 int main(void)
 {
     GLFWwindow* window;
