@@ -8,9 +8,8 @@ IF %errorlevel%==0 g++ -c src\%projectName%.cpp -o obj\%projectName%.o -std=gnu+
 IF %errorlevel%==0 g++ -c include\GLSLTools.cpp -o obj\GLSLTools.o -std=gnu++0x -Iinclude -g
 
 ::Move dynamic libraries
-REM xcopy lib\glew32.dll bin /Y
-copy src\FragmentSource.glsl bin\FragmentSource.glsl
-copy src\VertexSource.glsl bin\VertexSource.glsl
+IF %errorlevel%==0 copy src\FragmentSource.glsl bin\FragmentSource.glsl
+IF %errorlevel%==0 copy src\VertexSource.glsl bin\VertexSource.glsl
 
 ::Check if compiler failed
 IF %errorlevel%==0 (

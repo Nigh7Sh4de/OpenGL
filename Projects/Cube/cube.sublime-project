@@ -8,6 +8,11 @@
 	"settings":
 	{
 		"sublimegdb_commandline": "gdb -nx -readnow -fullname --interpreter=mi -args ./Cube.exe",
-		"sublimegdb_workingdir": "${folder:${project_path:bin/Cube.exe}}"
+		"sublimegdb_workingdir": "${folder:${project_path:bin/Cube.exe}}",
+		"sublimeclang_options": [
+		    "-I${folder:${project_path:include}}/**",
+		    "-I${folder:C:/MinGW/include/**"
+    	]
 	}
+
 }

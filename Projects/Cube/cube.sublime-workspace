@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"frm",
+				"fragmentShader"
+			],
+			[
 				"Ve",
 				"VertexSource"
 			],
@@ -59,7 +63,7 @@
 			"file": "compile.bat",
 			"settings":
 			{
-				"buffer_size": 1015,
+				"buffer_size": 1021,
 				"line_ending": "Windows"
 			}
 		},
@@ -67,15 +71,7 @@
 			"file": "src/Cube.cpp",
 			"settings":
 			{
-				"buffer_size": 3254,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/FragmentSource.glsl",
-			"settings":
-			{
-				"buffer_size": 95,
+				"buffer_size": 3583,
 				"line_ending": "Windows"
 			}
 		},
@@ -83,24 +79,23 @@
 			"file": "include/GLSLTools.cpp",
 			"settings":
 			{
-				"buffer_size": 4287,
-				"line_ending": "Windows",
-				"name": "/**"
-			}
-		},
-		{
-			"file": "include/GLSLTools.h",
-			"settings":
-			{
-				"buffer_size": 240,
+				"buffer_size": 1741,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "bin/VertexSource.glsl",
+			"file": "src/FragmentSource.glsl",
 			"settings":
 			{
-				"buffer_size": 93,
+				"buffer_size": 98,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/VertexSource.glsl",
+			"settings":
+			{
+				"buffer_size": 143,
 				"line_ending": "Windows"
 			}
 		}
@@ -108,16 +103,28 @@
 	"build_system": "Packages/User/Compile.bat.sublime-build",
 	"command_palette":
 	{
-		"height": 58.0,
+		"height": 334.0,
 		"selected_items":
 		[
 			[
-				"stop",
-				"SublimeGDB: Stop Debugging"
+				"snip",
+				"Snippet: html"
+			],
+			[
+				"snippet",
+				"Snippet: html"
+			],
+			[
+				"sublimecl",
+				"Preferences: SublimeClang Settings – User"
 			],
 			[
 				"install",
 				"Package Control: Install Package"
+			],
+			[
+				"stop",
+				"SublimeGDB: Stop Debugging"
 			],
 			[
 				"glsl",
@@ -168,7 +175,7 @@
 				"Preferences: SublimeGDB Settings – Default"
 			]
 		],
-		"width": 400.0
+		"width": 512.0
 	},
 	"console":
 	{
@@ -185,9 +192,20 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/src/FragmentSource.glsl",
-		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/include/GLSLTools.h",
+		"/C/Users/Nigh7Sh4de/AppData/Roaming/Sublime Text 2/Packages/User/html5.sublime-snippet",
+		"/C/Users/Nigh7Sh4de/Desktop/HTML5App/main.htm",
 		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/cube.sublime-project",
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/include/GL/_mingw.h",
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/include/GL/windows.h",
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/include/GL/gl.h",
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/include/GL/glu.h",
+		"/C/Users/Nigh7Sh4de/AppData/Roaming/Sublime Text 2/Packages/User/SublimeClang.sublime-settings",
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/src/poop.java",
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/bin/VertexSource.glsl",
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/src/FragmentSource.glsl",
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/bin/FragmentSource.glsl",
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/include/GLSLTools.h",
+		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/include/GLSLTools.cpp",
 		"/C/Users/Nigh7Sh4de/Programming/Github/OpenGL/Projects/Cube/src/VertexSource.glsl",
 		"/C/Users/Nigh7Sh4de/Programming/OpenGL/Test003/test003.sublime-project",
 		"/C/Users/Nigh7Sh4de/Programming/OpenGL/Test002/test002.sublime-project",
@@ -261,6 +279,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"gl/glu.h",
+			"fragmentsource",
+			"endl",
+			"pos",
 			"vertex",
 			"gdb",
 			"RGB",
@@ -372,6 +394,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"col",
 			"fragment",
 			"RGBA",
 			"n",
@@ -406,7 +429,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -414,15 +437,15 @@
 					"file": "compile.bat",
 					"settings":
 					{
-						"buffer_size": 1015,
+						"buffer_size": 1021,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								698,
-								698
+								477,
+								477
 							]
 						],
 						"settings":
@@ -431,7 +454,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 75.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -441,15 +464,15 @@
 					"file": "src/Cube.cpp",
 					"settings":
 					{
-						"buffer_size": 3254,
+						"buffer_size": 3583,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1470,
-								1470
+								274,
+								274
 							]
 						],
 						"settings":
@@ -459,25 +482,53 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 197.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "src/FragmentSource.glsl",
+					"file": "include/GLSLTools.cpp",
 					"settings":
 					{
-						"buffer_size": 95,
+						"buffer_size": 1741,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								452,
+								452
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/FragmentSource.glsl",
+					"settings":
+					{
+						"buffer_size": 98,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14,
+								16
 							]
 						],
 						"settings":
@@ -491,74 +542,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "include/GLSLTools.cpp",
-					"settings":
-					{
-						"buffer_size": 4287,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1270,
-								1270
-							]
-						],
-						"settings":
-						{
-							"auto_name": "/**",
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
 					"buffer": 4,
-					"file": "include/GLSLTools.h",
+					"file": "src/VertexSource.glsl",
 					"settings":
 					{
-						"buffer_size": 240,
+						"buffer_size": 143,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								119,
-								119
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "bin/VertexSource.glsl",
-					"settings":
-					{
-						"buffer_size": 93,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								143,
+								143
 							]
 						],
 						"settings":
@@ -605,6 +601,14 @@
 		]
 	},
 	"menu_visible": true,
+	"output.clang":
+	{
+		"height": 118.0
+	},
+	"output.clang_static_analyzer":
+	{
+		"height": 0.0
+	},
 	"output.exec":
 	{
 		"height": 274.0
@@ -620,12 +624,12 @@
 		"selected_items":
 		[
 			[
-				"vertex",
-				"bin/VertexSource.glsl"
+				"glsl",
+				"include/GLSLTools.cpp"
 			],
 			[
-				"glsl",
-				"include/GLSLTools.h"
+				"vertex",
+				"bin/VertexSource.glsl"
 			]
 		],
 		"width": 0.0
